@@ -157,14 +157,16 @@ class SurveyResponse(Base):
 - RBAC middleware  
 - DB audit table (event logs)  
 
-\`\`\`python
+```python
+# --- Python: Features ---
 class AuditLog(Base):
     actor_id: UUID
     action: str  # e.g., 'create_survey'
     entity_type: str
     entity_id: UUID
     timestamp: datetime
-\`\`\`
+```
+
 
 **AI Tools Used:**
 
@@ -182,11 +184,12 @@ class AuditLog(Base):
 
 **Example Use Case:**
 
-\`\`\`bash
+```bash
+# --- bash: Example ---
 curl -X POST https://api.healthplatform.com/surveys \
 -H "Authorization: Bearer {token}" \
 -d '{"title": "Post-Visit Feedback", ...}'
-\`\`\`
+```
 
 #### 🧱 Tools
 

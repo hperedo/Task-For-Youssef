@@ -43,9 +43,8 @@ Here’s a structured breakdown of how to develop the Survey Management Subsyste
 
 **Models:**
 
-#### 🐍 Python
-
 ```python
+# --- Python: Survey and Question Models ---
 class Survey(Base):
     id: UUID
     title: str
@@ -61,9 +60,7 @@ class Question(Base):
     type: Enum('text', 'rating', 'multiple_choice')
     options: Optional[List[str]]  # For MCQs
 ```
-```` ```python ````
 
-```` ``` dfgdfgdfgdfgdfg````
 
 **Endpoints:**
 

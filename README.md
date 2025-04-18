@@ -89,14 +89,15 @@ class Question(Base):
 
 **Models:**
 
-\`\`\`python
+```python
+# --- Python: Models ---
 class SurveyResponse(Base):
     id: UUID
     survey_id: UUID
     patient_id: UUID
     answers: Dict[UUID, Any]
     submitted_at: datetime
-\`\`\`
+```
 
 **Endpoints:**
 

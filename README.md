@@ -4,7 +4,6 @@ Here’s a structured breakdown of how to develop the Survey Management Subsyste
 
 ## 🔧 Overview of the Subsystem
  System Goals:
-
     - Real-time survey distribution and response tracking
 
     - Modular and scalable architecture

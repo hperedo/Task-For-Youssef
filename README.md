@@ -61,7 +61,8 @@ class Question(Base):
     type: Enum('text', 'rating', 'multiple_choice')
     options: Optional[List[str]]  # For MCQs
 ```
-
+```` ```python ````: Tells Markdown this is a **Python** code block, so syntax highlighting will be applied  
+- Then you close with ```` ``` ````  
 
 **Endpoints:**
 

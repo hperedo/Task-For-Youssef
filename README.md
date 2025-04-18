@@ -60,6 +60,7 @@ class Question(Base):
     text: str
     type: Enum('text', 'rating', 'multiple_choice')
     options: Optional[List[str]]  # For MCQs
+```
 
 
 **Endpoints:**

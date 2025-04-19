@@ -1,0 +1,6 @@
+app.include_router(survey.router, prefix="/surveys", tags=["Surveys"])
+app.include_router(response.router, prefix="/responses", tags=["Responses"])
+app.include_router(analytics.router, prefix="/analytics", tags=["Analytics"])
+app.include_router(admin.router, prefix="/admin", tags=["Administration"])
+app.include_router(integration.router, prefix="/integrate", tags=["Integration"])
+

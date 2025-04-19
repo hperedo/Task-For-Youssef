@@ -12,6 +12,7 @@ Here’s a structured breakdown of how to develop the Survey Management Subsyste
 - **Integration-ready** with external systems  
 
 ---
+![ Vizualization Survey Management FASTAPI Application ](FASTAPI.png)
 
 ### ☁️ Target Platforms
 

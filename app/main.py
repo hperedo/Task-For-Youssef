@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.api.middleware.auth import AuthMiddleware, auth_middleware
 from app.api.routes import (
     survey,
@@ -14,6 +16,16 @@ from app.services.notification import register_notification_handlers
 
 # app = FastAPI(lifespan=lifespan)
 app = FastAPI()
+
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to the Health System API",
+        "docs": {
+            "swagger": "http://localhost:8000/docs",
+            "redoc": "http://localhost:8000/redoc"
+        }
+    }
 
 # Add the middleware (should be after CORS middleware if you have it)
 app.add_middleware(AuthMiddleware)

@@ -14,12 +14,12 @@ Here’s a structured breakdown of how to develop the Survey Management Subsyste
 ---
 ![ Vizualization Survey Management FASTAPI Application ](FASTAPI.png)
 
-```markdown
+
 # 🚀 FastAPI Project: Task Manager
 
 A Python FastAPI backend with OpenAPI docs, AI-assisted development, and analytics.
 
----
+
 
 ## 📁 1. Codebase & Setup Instructions
 

@@ -101,6 +101,7 @@ async def read_tasks():
 ### 🤖 AI Tooling
 - Leveraged **ChatGPT**, **Copilot**, and other tools for boilerplate code, debugging, and docstrings.
 
+---
 
 # AWS Deployment Guide for FastAPI
 

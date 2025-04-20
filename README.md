@@ -81,16 +81,9 @@ async def read_tasks():
 ![ Vizualization Survey Management FASTAPI Application ](FASTAPI.png)
 
 ### 🔁 Data Flow  
-*(Placeholder: Add data flow diagram or code explanation)*
 
 
-```mermaid
-flowchart LR
-    User -->|HTTP Request| API
-    API -->|Query| Database
-    Database -->|Response| API
-    API -->|JSON| User
----
+![ Vizualization Survey Management FASTAPI DataFlow ](dataflowdiagram.png)
 
 ## 💡 5. Key Decisions
 
@@ -108,6 +101,52 @@ flowchart LR
 ### 🤖 AI Tooling
 - Leveraged **ChatGPT**, **Copilot**, and other tools for boilerplate code, debugging, and docstrings.
 
+
+# AWS Deployment Guide for FastAPI
+
+## AWS Elastic Beanstalk (Easiest)
+
+### 1. Prepare Your Application
+
+```bash
+# Install required packages
+pip install fastapi uvicorn gunicorn
+```
+### 2. Create requirements.txt
+```bash
+pip freeze > requirements.txt
+```
+### 3. Add Dockerrun.aws.json (for Docker) or configure Python directly
+```json
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "python:3.9-slim",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8000"
+    }
+  ]
+}
+```
+### 4. Install EB CLI
+```bash
+pip install awsebcli
+```
+### 5. Initialize EB
+```bash
+eb init -p python-3.9 your-app-name --region us-east-1
+```
+### 6. Create Environment & Deploy
+```bash
+eb create your-env-name --single --instance-types t3.small
+```
+### 7. Configure Environment Variables
+```bash
+eb setenv DATABASE_URL=your_db_url SECRET_KEY=your_key
+```
 ---
 
 ## 📜 License

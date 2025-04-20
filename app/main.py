@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.api.middleware.auth import AuthMiddleware, auth_middleware
 from app.api.routes import (
     survey,
     response,
@@ -6,16 +7,20 @@ from app.api.routes import (
     admin,
     integration
 )
-from app.api.middleware.auth import auth_middleware  # Direct import
+# from app.api.middleware.auth import auth_middleware  # Direct import
 from app.api.middleware.audit import audit_middleware  # Direct import
 from app.core.events import lifespan
 from app.services.notification import register_notification_handlers
 
-app = FastAPI(lifespan=lifespan)
+# app = FastAPI(lifespan=lifespan)
+app = FastAPI()
+
+# Add the middleware (should be after CORS middleware if you have it)
+app.add_middleware(AuthMiddleware)
 
 # Register middleware
-app.middleware("http")(auth_middleware)
-app.middleware("http")(audit_middleware)
+# app.middleware("http")(auth_middleware)
+# app.middleware("http")(audit_middleware)
 
 # Include routers
 app.include_router(survey.router, prefix="/surveys", tags=["Surveys"])

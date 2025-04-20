@@ -12,7 +12,7 @@ Here’s a structured breakdown of how to develop the Survey Management Subsyste
 - **Integration-ready** with external systems  
 
 ---
-![ Vizualization Survey Management FASTAPI Application ](FASTAPI.png)
+
 
 
 # 🚀 FastAPI Project: Task Manager
@@ -77,11 +77,19 @@ async def read_tasks():
 ## 🏗️ 4. Architecture & Data Flow (Optional Diagrams)
 
 ### 🖼️ System Diagram  
-*(Placeholder: Add your actual diagram)*
+
+![ Vizualization Survey Management FASTAPI Application ](FASTAPI.png)
 
 ### 🔁 Data Flow  
 *(Placeholder: Add data flow diagram or code explanation)*
 
+
+```mermaid
+flowchart LR
+    User -->|HTTP Request| API
+    API -->|Query| Database
+    Database -->|Response| API
+    API -->|JSON| User
 ---
 
 ## 💡 5. Key Decisions

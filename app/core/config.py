@@ -7,6 +7,9 @@ class Settings(BaseSettings):
     DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://user:pass@localhost:5432/healthsurveys")
     SECRET_KEY: str = os.getenv("SECRET_KEY", "supersecret")
     ENCRYPTION_KEY: str = os.getenv("ENCRYPTION_KEY") or Fernet.generate_key().decode()
+    # Add these new settings
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    ALGORITHM: str = "HS256"
     
     # Validate the encryption key
     @property

@@ -103,6 +103,98 @@ async def read_tasks():
 
 ---
 
+
+## Complete Survey Creation Workflow Test - Health Survey API 
+
+### 1. Register a New User
+
+```bash
+curl -X POST "http://localhost:8000/users/register" \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "surveyadmin@example.com",
+    "password": "securepassword123",
+    "full_name": "Survey Admin",
+    "role": "healthcare_admin"
+}'
+```
+### 2. Login to Get Access Token
+```bash
+TOKEN=$(curl -s -X POST "http://localhost:8000/auth/login" \
+-H "Content-Type: application/json" \
+-d '{"email":"surveyadmin@example.com","password":"securepassword123"}' | jq -r '.access_token')
+
+echo "Your access token: $TOKEN"
+```
+### 3. Create a New Survey
+```bash
+curl -X POST "http://localhost:8000/surveys" \
+-H "Authorization: Bearer $TOKEN" \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "Patient Satisfaction Survey",
+    "description": "Please rate your recent healthcare experience",
+    "questions": [
+        {
+            "id": "q1",
+            "type": "rating",
+            "text": "How would you rate your overall experience?",
+            "required": true,
+            "options": ["1", "2", "3", "4", "5"]
+        },
+        {
+            "id": "q2",
+            "type": "text",
+            "text": "Any additional comments?",
+            "required": false
+        }
+    ],
+    "department": "cardiology",
+    "expiry_days": 30
+}'
+```
+### 4. Verify Survey Creation
+```bash
+# List all surveys
+curl -X GET "http://localhost:8000/surveys" \
+-H "Authorization: Bearer $TOKEN"
+
+# Get specific survey (replace :id with actual survey ID from the response)
+curl -X GET "http://localhost:8000/surveys/1" \
+-H "Authorization: Bearer $TOKEN"
+```
+Expected Successful Responses
+Registration
+```json
+{
+  "email": "surveyadmin@example.com",
+  "full_name": "Survey Admin",
+  "id": 1,
+  "is_active": true,
+  "role": "healthcare_admin"
+}
+```
+Login
+```json
+{
+  "access_token": "eyJhbGciOi...",
+  "token_type": "bearer"
+}
+```
+Survey Creation (201 Created)
+```json
+{
+  "id": 1,
+  "title": "Patient Satisfaction Survey",
+  "description": "Please rate your recent healthcare experience",
+  "questions": [...],
+  "department": "cardiology",
+  "is_active": true,
+  "created_at": "2023-07-20T12:00:00Z"
+}
+```
+---
+
 # AWS Deployment Guide for FastAPI
 
 ## AWS Elastic Beanstalk (Easiest)

@@ -1,15 +1,27 @@
 from enum import Enum
-from typing import Optional  # Add this import
 from pydantic import BaseModel
+from typing import Optional
 
 class UserRole(str, Enum):
     healthcare_admin = "healthcare_admin"
     medical_staff = "medical_staff"
     patient = "patient"
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: Optional[str] = None
+
 class UserBase(BaseModel):
     email: str
-    full_name: Optional[str] = None  # Now Optional is defined
+    full_name: Optional[str] = None
+
+# Add the missing UserLogin class
+class UserLogin(BaseModel):
+    email: str
+    password: str
 
 class UserCreate(UserBase):
     password: str
@@ -21,4 +33,4 @@ class UserOut(UserBase):
     is_active: bool
     
     class Config:
-        from_attributes = True  # Updated from orm_mode in Pydantic v2
+        from_attributes = True  # Changed from orm_mode

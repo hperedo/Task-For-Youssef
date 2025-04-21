@@ -1,20 +1,28 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status  # Added status import here
 from sqlalchemy.orm import Session
 from typing import List
-from app.db.session import get_db
-from app.api.deps import require_healthcare_admin, get_current_user
-from app import schemas
-from app import crud
+from app import schemas, crud
+from app.api.deps import get_db, require_healthcare_admin, get_current_user
 
 router = APIRouter()
 
-@router.post("/", response_model=schemas.SurveyOut)
+@router.post("/", response_model=schemas.SurveyOut, status_code=status.HTTP_201_CREATED)
 def create_survey(
     survey: schemas.SurveyCreate,
     db: Session = Depends(get_db),
     current_user: dict = Depends(require_healthcare_admin)
 ):
-    return crud.survey.create_survey(db, survey, current_user["sub"])
+    """
+    Create a new survey (Healthcare admin only)
+    """
+    # Validate department if provided
+    if survey.department and not validate_department(survey.department):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid department specified"
+        )
+    
+    return crud.survey.create_survey(db, survey, current_user["user_id"])
 
 @router.get("/", response_model=List[schemas.SurveyOut])
 def read_surveys(

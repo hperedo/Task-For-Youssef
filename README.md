@@ -36,8 +36,8 @@ cd Task-For-Youssef
 # Install dependencies
 pip install -r requirements.txt
 
-# Run FastAPI (dev mode)
-uvicorn main:app --reload
+# Run FastAPI
+uvicorn app.main:app --host localhost --port 8000 --reload
 ```
 
 Access the app: [http://localhost:8000](http://localhost:8000)
@@ -112,9 +112,9 @@ async def read_tasks():
 curl -X POST "http://localhost:8000/users/register" \
 -H "Content-Type: application/json" \
 -d '{
-    "email": "surveyadmin@example.com",
+    "email": "hperedo@example.com",
     "password": "securepassword123",
-    "full_name": "Survey Admin",
+    "full_name": "Survey hperedo",
     "role": "healthcare_admin"
 }'
 ```

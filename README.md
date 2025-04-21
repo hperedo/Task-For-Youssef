@@ -36,6 +36,14 @@ cd Task-For-Youssef
 # Install dependencies
 pip install -r requirements.txt
 
+# Please keep in mind that the name of the database in Postgres is: "fastapi" and that you already need to be have the POSTgres configured (USER and PASSWORD)
+# List hostnames
+sudo ss -tulnp | grep postgres
+# List USERS in postgres
+sudo -u postgres psql -c "\du"
+# Access the database fastaapi to check it
+psql -h localhost -U parallel01 -d fastapi
+
 # Run FastAPI
 uvicorn app.main:app --host localhost --port 8000 --reload
 ```
